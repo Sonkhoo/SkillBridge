@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Sidebar from '../../components/sidebar';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -19,7 +21,10 @@ import {
 } from 'lucide-react';
 
 const Detail = ({ courseId, onBack }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+ 
+  const [activeTab, setActiveTab] = useState('courses');
   const [expandedLesson, setExpandedLesson] = useState(null);
   const [expandedQuiz, setExpandedQuiz] = useState(null);
 
@@ -350,14 +355,22 @@ const Detail = ({ courseId, onBack }) => {
   };
 
   return (
+    <div className="flex min-h-screen bg-white">
+      {/* Sidebar */}
+      <Sidebar
+        activeTab={activeTab}
+        onNavigate={setActiveTab}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
     <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white"
     >
       {/* Header */}
-      <motion.div variants={itemVariants} className="mb-8">
+      <motion.div variants={itemVariants} className="mb-8 bg-white">
         <button
           onClick={onBack}
           className="flex items-center text-black hover:text-black mb-6 transition-colors duration-200"
@@ -662,6 +675,7 @@ const Detail = ({ courseId, onBack }) => {
         )}
       </AnimatePresence>
     </motion.div>
+    </div>
   );
 };
 

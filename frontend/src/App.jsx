@@ -23,13 +23,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Landing from './components/landing';
-import Login from './components/login';
-import Test from './components/test';
-import Dashboard from './components/dashboard';
-import Blockchain from './components/blockchain';  
-import Suggestions from './components/suggestions';
-import Jobboard from './components/jobboard';      
+import Landing from './pages/landing/landing';
+import Login from './pages/auth/login';
+import Test from './pages/test';
+import Dashboard from './pages/dashboard/dashboard';
+import Blockchain from './pages/certificates/blockchain';
+import Suggestions from './pages/courses/suggestions';
+import Jobboard from './pages/jobboard';   
 
 function App() {
   return (

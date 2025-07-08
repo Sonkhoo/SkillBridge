@@ -1,8 +1,14 @@
 import React from 'react';
+import Sidebar from '../../components/ui/sidebar';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, CheckCircle, Star, Clock, Users } from 'lucide-react';
 
 const Suggestions = () => {
+   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+    // Optional: to keep track of active tab in sidebar, if you want
+    const [activeTab, setActiveTab] = useState('recommendations');
   const courses = [
     {
       id: 1,
@@ -99,7 +105,15 @@ const Suggestions = () => {
   const regularCourses = courses.filter(course => !course.featured);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="flex min-h-screen bg-white">
+      {/* Sidebar */}
+      <Sidebar
+        activeTab={activeTab}
+        onNavigate={setActiveTab}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -229,6 +243,7 @@ const Suggestions = () => {
           </motion.div>
         ))}
       </motion.div>
+    </div>
     </div>
   );
 };
